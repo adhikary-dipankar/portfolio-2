@@ -34,32 +34,20 @@
             transition: width 1.5s ease-in-out;
         }
         
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -38px;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #3b82f6;
-            border: 4px solid #bfdbfe;
-        }
-        
         .project-card {
             transition: all 0.3s ease;
             perspective: 1000px;
         }
         
         .project-card:hover .project-content {
-            transform: rotateY(20deg);
+            transform: rotateY(10deg);
         }
         
         .typewriter {
             overflow: hidden;
             border-right: 3px solid #3b82f6;
             white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+            animation: typing 3.5s steps(50, end), blink-caret .75s step-end infinite;
         }
         
         @keyframes typing {
@@ -71,6 +59,92 @@
             from, to { border-color: transparent }
             50% { border-color: #3b82f6 }
         }
+
+        .heart-container {
+  --heart-color: rgb(147, 58, 235);
+  position: relative;
+  width: 50px;
+  height: 50px;
+  transition: .3s;
+}
+
+.heart-container .checkbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.heart-container .svg-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heart-container .svg-outline,
+        .heart-container .svg-filled {
+  fill: var(--heart-color);
+  position: absolute;
+}
+
+.heart-container .svg-filled {
+  animation: keyframes-svg-filled 1s;
+  display: none;
+}
+
+.heart-container .svg-celebrate {
+  position: absolute;
+  animation: keyframes-svg-celebrate .5s;
+  animation-fill-mode: forwards;
+  display: none;
+  stroke: var(--heart-color);
+  fill: var(--heart-color);
+  stroke-width: 2px;
+}
+
+.heart-container .checkbox:checked~.svg-container .svg-filled {
+  display: block
+}
+
+.heart-container .checkbox:checked~.svg-container .svg-celebrate {
+  display: block
+}
+
+@keyframes keyframes-svg-filled {
+  0% {
+    transform: scale(0);
+  }
+
+  25% {
+    transform: scale(1.2);
+  }
+
+  50% {
+    transform: scale(1);
+    filter: brightness(1.5);
+  }
+}
+
+@keyframes keyframes-svg-celebrate {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+    display: none;
+  }
+}
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -97,6 +171,7 @@
                 </div>
             </div>
         </div>
+
         
         <!-- Mobile menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
@@ -122,17 +197,56 @@
                     Innovative developer specializing in scalable web applications and AI integration. Passionate about clean architecture and performance optimization.
                 </p>
                 <div class="flex space-x-4">
-                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition shadow-lg">Get In Touch</a>
-                    <a href="#projects" class="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition">View My Work</a>
+                    <button  onclick="window.location.href='#contact'" class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group transition"type="button">
+                        <div class="bg-green-400 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
+                                <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 1024 1024"
+                                height="25px"
+                                width="25px"
+                                >
+                                <path
+                                    d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+                                    fill="#000000"
+                                ></path>
+                                <path
+                                    d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+                                    fill="#000000"
+                                ></path>
+                                </svg>
+                            </div>
+                            <p  class="translate-x-2">In Touch</p>
+                     </button>
+
+                    <button onclick="window.location.href='#projects'"  class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"type="button">
+                        <div class="bg-sky-400 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
+                                <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 1024 1024"
+                                height="25px"
+                                width="25px"
+                                >
+                                <path
+                                    d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+                                    fill="#000000"
+                                ></path>
+                                <path
+                                    d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+                                    fill="#000000"
+                                ></path>
+                                </svg>
+                            </div>
+                            <p class="translate-x-2">Projects</p>
+                     </button>
                 </div>
                 <div class="flex space-x-4 mt-8">
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-gray-600 hover:text-blue-600 transition" title="LinkedIn">
+                    <a href="https://linkedin.com/in/dipankar-adhikary" target="_blank" class="text-indigo-400 hover:scale-125 duration-200 hover:text-sky-600 transition" title="LinkedIn">
                         <i class="fab fa-linkedin text-2xl"></i>
                     </a>
-                    <a href="https://github.com/yourusername" target="_blank" class="text-gray-600 hover:text-black transition" title="GitHub">
+                    <a href="https://github.com/adhikary-dipankar" target="_blank" class="text-gray-600 hover:scale-125 duration-200 hover:text-purple-500 transition" title="GitHub">
                         <i class="fab fa-github text-2xl"></i>
                     </a>
-                    <a href="mailto:your.email@gmail.com" class="text-gray-600 hover:text-red-500 transition" title="Email">
+                    <a href="mailto:dipu98adhikary@gmail.com" class="text-yellow-600 hover:text-red-500  hover:scale-125 duration-200 transition" title="Email">
                         <i class="fas fa-envelope text-2xl"></i>
                     </a>
                 </div>
@@ -140,11 +254,11 @@
             <div class="md:w-1/2 flex justify-center">
                 <div class="relative">
                     <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-white shadow-2xl">
-                        <img src="https://placehold.co/500x500" alt="Professional headshot of Dipankar Adhikary" class="w-full h-full object-cover">
+                        <img src="./sscProfile.png" alt="Professional headshot of Dipankar Adhikary" class="w-full h-full object-cover rounded-full">
                     </div>
                     <div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg hero-blur">
-                        <div class="text-center">
-                            <p class="font-bold text-blue-600">1+ Years</p>
+                        <div class="text-center animate-pulse">
+                            <p class="font-bold text-blue-600">2+ Years</p>
                             <p class="text-sm text-gray-600">Experience</p>
                         </div>
                     </div>
@@ -181,8 +295,8 @@
                     <div class="space-y-6">
                         <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
                             <div class="flex items-center mb-4">
-                                <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                    <i class="fas fa-laptop-code text-blue-600"></i>
+                                <div class="bg-blue-200 p-3 rounded-full mr-4">
+                                    <i class="fas fa-laptop-code text-blue-600 hover:scale-150 duration-200 hover:text-blue-800 transition"></i>
                                 </div>
                                 <h4 class="font-bold text-xl">Full Stack Development</h4>
                             </div>
@@ -193,8 +307,8 @@
                         
                         <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
                             <div class="flex items-center mb-4">
-                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
-                                    <i class="fas fa-robot text-indigo-600"></i>
+                                <div class="bg-indigo-200 p-3 rounded-full mr-4">
+                                    <i class="fas fa-robot text-indigo-600 hover:scale-150 duration-200 hover:text-indigo-800 transition"></i>
                                 </div>
                                 <h4 class="font-bold text-xl">AI Integration</h4>
                             </div>
@@ -205,8 +319,8 @@
                         
                         <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
                             <div class="flex items-center mb-4">
-                                <div class="bg-purple-100 p-3 rounded-full mr-4">
-                                    <i class="fas fa-chart-line text-purple-600"></i>
+                                <div class="bg-purple-200 p-3 rounded-full mr-4">
+                                    <i class="fas fa-chart-line text-purple-500 hover:scale-150 duration-200 hover:text-purple-700 transition"></i>
                                 </div>
                                 <h4 class="font-bold text-xl">Performance Optimization</h4>
                             </div>
@@ -288,8 +402,22 @@
                             <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">OpenAI API</span>
                         </div>
                         <div class="flex justify-between">
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">View Details →</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fab fa-github text-lg"></i></a>
+                            <button
+                                type="submit"
+                                class="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-500 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                                >
+                                View Details
+                                <svg
+                                    class="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+                                    viewBox="0 0 16 19"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                    d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+                                    class="fill-gray-800 group-hover:fill-gray-800"
+                                    ></path>
+                                </svg>
+                                </button>
                         </div>
                     </div>
                 </div>
@@ -317,15 +445,53 @@
                             <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Firebase</span>
                         </div>
                         <div class="flex justify-between">
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">View Details →</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fab fa-github text-lg"></i></a>
+                            <button
+                                type="submit"
+                                class="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-500 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                                >
+                                View Details
+                                <svg
+                                    class="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+                                    viewBox="0 0 16 19"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                    d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+                                    class="fill-gray-800 group-hover:fill-gray-800"
+                                    ></path>
+                                </svg>
+                                </button>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="text-center mt-12">
-                <a href="#" class="inline-block border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg font-medium transition">View All Projects</a>
+                    <button onclick="window.location.href='https://github.com/adhikary-dipankar'" class="relative items-center px-8 py-3 overflow-hidden font-medium transition-all bg-indigo-500 rounded-md group ">
+                    <span
+                        class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-indigo-700 rounded group-hover:-mr-4 group-hover:-mt-4"
+                    >
+                        <span
+                        class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
+                        ></span>
+                    </span>
+                    <span
+                        class="absolute bottom-0 rotate-180 left-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-indigo-700 rounded group-hover:-ml-4 group-hover:-mb-4"
+                    >
+                        <span
+                        class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
+                        ></span>
+                    </span>
+                    <span
+                        class="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full bg-indigo-600 rounded-md group-hover:translate-x-0"
+                    ></span>
+                    <span
+                        class="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white"
+                        >View All Projects</span
+                    >
+                    </button>
+
+            
             </div>
         </div>
     </section>
@@ -342,8 +508,8 @@
                 <!-- Frontend Skills -->
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <div class="flex items-center mb-6">
-                        <div class="bg-blue-100 p-3 rounded-full mr-4">
-                            <i class="fas fa-paint-brush text-blue-600"></i>
+                        <div class="bg-blue-200 p-3 rounded-full mr-4">
+                            <i class="fas fa-paint-brush text-blue-600 hover:scale-150 duration-200 hover:text-blue-800 transition"></i>
                         </div>
                         <h3 class="text-xl font-bold">Frontend</h3>
                     </div>
@@ -390,8 +556,8 @@
                 <!-- Backend Skills -->
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <div class="flex items-center mb-6">
-                        <div class="bg-purple-100 p-3 rounded-full mr-4">
-                            <i class="fas fa-server text-purple-600"></i>
+                        <div class="bg-purple-200 p-3 rounded-full mr-4">
+                            <i class="fas fa-server text-purple-600 hover:scale-150 duration-200 hover:text-purple-800 transition"></i>
                         </div>
                         <h3 class="text-xl font-bold">Backend</h3>
                     </div>
@@ -438,8 +604,8 @@
                 <!-- Databases & Tools -->
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <div class="flex items-center mb-6">
-                        <div class="bg-green-100 p-3 rounded-full mr-4">
-                            <i class="fas fa-database text-green-600"></i>
+                        <div class="bg-green-200 p-3 rounded-full mr-4">
+                            <i class="fas fa-database text-green-600 hover:scale-150 duration-200 hover:text-green-800 transition"></i>
                         </div>
                         <h3 class="text-xl font-bold">Databases & Tools</h3>
                     </div>
@@ -516,8 +682,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-gray-50 p-8 rounded-xl shadow-md">
                     <div class="flex items-start mb-6">
-                        <div class="bg-blue-100 p-4 rounded-lg mr-6">
-                            <i class="fas fa-graduation-cap text-blue-600 text-2xl"></i>
+                        <div class="bg-blue-200 p-4 rounded-lg mr-6">
+                            <i class="fas fa-graduation-cap text-blue-600 text-2xl hover:scale-150 duration-200 hover:text-blue-800  animate-pulse transition"></i>
                         </div>
                         <div>
                             <h3 class="text-xl font-bold">B.Tech, Chemical Engineering</h3>
@@ -528,8 +694,8 @@
                     </div>
                     
                     <div class="flex items-start">
-                        <div class="bg-purple-100 p-4 rounded-lg mr-6">
-                            <i class="fas fa-laptop-code text-purple-600 text-2xl"></i>
+                        <div class="bg-purple-200 p-4 rounded-lg mr-6">
+                            <i class="fas fa-laptop-code text-purple-600 text-2xl hover:scale-150 duration-200 hover:text-purple-800 animate-pulse transition"></i>
                         </div>
                         <div>
                             <h3 class="text-xl font-bold">Minor: Computer Applications</h3>
@@ -583,7 +749,17 @@
                                 <label for="message" class="block text-gray-700 mb-2">Message</label>
                                 <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                             </div>
-                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition">Send Message</button>
+                            <div class="flex justify-center">
+                                <button class="group/button relative inline-block items-center justify-center overflow-hidden rounded-md bg-blue-800/30 backdrop-blur-lg px-6 py-2 text-blue-500 font-semibold text-blue-500 transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:shadow-blue-600/50 border border-white/20">
+                                <span class="text-lg">Send</span>
+                                <div
+                                    class="absolute inset-0 flex h-full w-full justify-center [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)]"
+                                >
+                                    <div class="relative h-full w-10 bg-purple-400/20"></div>
+                                </div>
+                                </button>
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -593,7 +769,7 @@
                         <div class="bg-white p-6 rounded-xl shadow-lg">
                             <div class="flex items-start">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                    <i class="fas fa-map-marker-alt text-blue-600 hover:scale-125 duration-200 hover:text-blue-800 animate-ping transition"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg mb-2">Location</h4>
@@ -605,7 +781,7 @@
                         <div class="bg-white p-6 rounded-xl shadow-lg">
                             <div class="flex items-start">
                                 <div class="bg-green-100 p-3 rounded-full mr-4">
-                                    <i class="fas fa-envelope text-green-600"></i>
+                                    <i class="fas fa-envelope text-green-600 hover:scale-125 duration-200 hover:text-green-800 animate-ping transition"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg mb-2">Email</h4>
@@ -617,7 +793,7 @@
                         <div class="bg-white p-6 rounded-xl shadow-lg">
                             <div class="flex items-start">
                                 <div class="bg-purple-100 p-3 rounded-full mr-4">
-                                    <i class="fas fa-phone-alt text-purple-600"></i>
+                                    <i class="fas fa-phone-alt text-purple-600 hover:scale-125 duration-200 hover:text-purple-800 animate-ping transition"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg mb-2">Phone</h4>
@@ -627,19 +803,44 @@
                         </div>
                         
                         <div class="bg-white p-6 rounded-xl shadow-lg">
-                            <h4 class="font-bold text-lg mb-4">Connect With Me</h4>
+                            <h4 class="font-bold text-lg mb-4">Follow Me</h4>
                             <div class="flex space-x-4">
-                                <a href="#" class="bg-blue-100 p-3 rounded-full text-blue-600 hover:bg-blue-200 transition">
+                                <a href="https://linkedin.com/in/dipankar-adhikary" target="_blank" class="bg-blue-100 p-3 rounded-full text-blue-600 hover:scale-150  hover:bg-blue-200 animate-pulse transition">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="#" class="bg-gray-100 p-3 rounded-full text-gray-800 hover:bg-gray-200 transition">
+                                <a href="https://github.com/adhikary-dipankar" target="_blank" class="bg-gray-100 p-3 rounded-full text-gray-800 hover:scale-150  hover:bg-gray-200 animate-pulse transition">
                                     <i class="fab fa-github"></i>
                                 </a>
-                                <a href="#" class="bg-red-100 p-3 rounded-full text-red-600 hover:bg-red-200 transition">
+                                <a href="mailto:dipu98adhikary@gmail.com" target="_blank" class="bg-red-100 p-3 rounded-full text-red-600 hover:scale-150  hover:bg-red-200 animate-pulse transition">
                                     <i class="fab fa-google"></i>
                                 </a>
                             </div>
                         </div>
+                        <div class="flex justify-center mt-6">
+                            <div class="heart-container" title="Like">
+                            <input type="checkbox" class="checkbox" id="Give-It-An-Id">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
+                                    </path>
+                                </svg>
+                                <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
+                                    </path>
+                                </svg>
+                                <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                                    <polygon points="10,10 20,20"></polygon>
+                                    <polygon points="10,50 20,50"></polygon>
+                                    <polygon points="20,80 30,70"></polygon>
+                                    <polygon points="90,10 80,20"></polygon>
+                                    <polygon points="90,50 80,50"></polygon>
+                                    <polygon points="80,80 70,70"></polygon>
+                                </svg>
+                            </div>
+                            <br>
+                            <p class="flex justify-center">Like Me</p>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -663,15 +864,15 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 mb-4 md:mb-0">© 2023 Dipankar Adhikary. All rights reserved.</p>
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Dipankar Adhikary. All rights reserved.</p>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition">
+                    <a href="https://linkedin.com/in/dipankar-adhikary" target="_blank" class="text-gray-400 hover:text-white transition">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
+                    <a href="https://github.com/adhikary-dipankar"  target="_blank" class="text-gray-400 hover:text-white transition">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
+                    <a href="https://x.com/D_Ved_Adhikar"  target="_blank" class="text-gray-400 hover:text-white transition">
                         <i class="fab fa-twitter"></i>
                     </a>
                 </div>
